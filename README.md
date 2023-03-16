@@ -64,8 +64,8 @@ implementation('com.siroccomobile.adtonos:sandstorm-lite-sdk:1.0@aar')
 // Required for full version with additional targeting
 implementation('com.siroccomobile.adtonos:thunder-sdk:1.0@aar')
 implementation('com.siroccomobile.adtonos:sandstorm-sdk:1.0@aar')
-implementation('ai.numbereight.sdk:nesdk:3.4.0@aar') { transitive = true }
-implementation('ai.numbereight.sdk:audiences:3.4.0')
+implementation('ai.numbereight.sdk:nesdk:3.+')
+implementation('ai.numbereight.sdk:audiences:3.+')
 
 // The following libraries can be updated according to project needs. 
 // The versions listed are recommended.
@@ -87,24 +87,14 @@ During the first startup, the library will ask the user to grant system permissi
 The following system permissions are used by the library. They will be merged during build, so you do not need to declare them again in the application manifest.
 
 ```xml
-<!-- Required for full and lite version -->
+<!-- Required for full and lite version - these will be automatically added by SandstormSDK -->
 <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 <uses-permission android:name="android.permission.INTERNET"/>
 <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
 
-<!-- Required for full version -->
+<!-- Optional permissions to improve targeting in the full version -->
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-<uses-permission android:name="android.permission.READ_PHONE_STATE" />
-<uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
-<uses-feature android:name="android.hardware.location" android:required="false" />
-<uses-feature android:name="android.hardware.sensor.gyroscope" android:required="false" />
-<uses-feature android:name="android.hardware.sensor.barometer" android:required="false" />
-<uses-feature android:name="android.hardware.sensor.compass" android:required="false" />
-<uses-feature android:name="android.hardware.sensor.light" android:required="false" />
-<uses-feature android:name="android.hardware.sensor.proximity" android:required="false" />
 ```
 
 ## Consents
@@ -114,20 +104,25 @@ In some regions, such as the EU, consent is required to allow third-parties to s
 
 ### AdTonosConsent.AllowAll
 
-Below is a list of what is included in this option:
+This option can be used if the user has given consent for the following purposes:
 
-* `PROCESSING` - Allow processing of data.
-* `SENSOR_ACCESS` - Allow use of the device's sensor data.
-* `STORAGE` - Allow storing and accessing information on the device.
-* `USE_FOR_AD_PROFILES` - Allow use of technology for personalised ads.
-* `USE_FOR_PERSONALISED_CONTENT` - Allow use of technology for personalised content.
-* `USE_FOR_REPORTING` - Allow use of technology for market research and audience insights.
-* `USE_FOR_IMPROVEMENT` - Allow use of technology for improving  products.
+#### Consent basis (user opts-in)
+
+* `STORAGE` (required) - Allow storing and accessing information on the device.
+* `USE_FOR_AD_PROFILES` (required) - Allow use of technology for personalised ads.
+* `USE_FOR_DIAGNOSTICS` - Allow processing of diagnostic information using an independent identifier to ensure the correct operation of systems.
 * `LINKING_DEVICES` - Allow linking different devices to the user through deterministic or probabilistic means.
+* `PRECISE_GEOLOCATION` - Allow use of precise geolocation data (within 500 metres accuracy).
+
+#### Legitimate interest basis (user opts-out)
+
+* `PROCESSING` (required) - Allow processing of data.
+* `USE_FOR_REPORTING` (required) - Allow use of technology for market research and audience insights.
+* `SENSOR_ACCESS` (required for full version) - Allow use of the device's sensor data.
+* `USE_FOR_PERSONALISED_CONTENT` - Allow use of technology for personalised content.
+* `USE_FOR_IMPROVEMENT` - Allow use of technology for improving products.
 * `USE_OF_DEVICE_INFO` - Allow use of automatically provided device information such as manufacturer, model, IP addresses and MAC addresses.
 * `USE_FOR_SECURITY` - Allow use of independent identifiers to ensure the secure operation of systems.
-* `USE_FOR_DIAGNOSTICS` - Allow processing of diagnostic information using an independent identifier to ensure the correct operation of systems.
-* `PRECISE_GEOLOCATION` - Allow use of precise geolocation data (within 500 metres accuracy).
 
 ### AdTonosConsent.None
 
