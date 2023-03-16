@@ -18,7 +18,7 @@ Below is a tutorial on how to add the library to your project and how to use it.
 ### Choose SDK versions
 You have to decide which version of SDK you want to use. Two available:
 
-**SandstormSDK** - contains SDK functionality with additional user targeting provided by [NumberEight](https://numbereight.ai/); this version will ask user for extra permissions (i.e. location)
+**SandstormSDK** - contains SDK functionality with additional user targeting provided by [NumberEight](https://numbereight.ai/)
 
 > [NumberEight](https://numbereight.ai/) is an AI software, which predicts the live context of a user (e.g. running, commuting) from sensors present in the device, and then packages them neatly into ID-less behavioural audiences (e.g. joggers, frequent shoppers).
 
@@ -152,7 +152,7 @@ The first necessary step in the project is to call the ATSandstormSDK.Initialize
 ATSandstormSDK.initialize(context = applicationContext)
 ```
 
-### Number eight key
+### NumberEight Key
 
 **This chapter is required for full version with additional targeting.**
 Before calling start method please invoke setNumberEightKey method with your obtained key to ensure proper work of sdk.
